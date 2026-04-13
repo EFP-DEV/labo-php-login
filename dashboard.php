@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,5 +9,6 @@
 </head>
 <body>
     <h1>Dashboard</h1>
+    <p>Bonjour <?= $_SESSION['is_logged']?></p>
 </body>
 </html>
