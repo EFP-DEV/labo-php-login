@@ -17,5 +17,7 @@ if(empty($_SESSION['is_logged'])){
     <p>Bonjour <?= $_SESSION['is_logged']?></p>
     
     <p>VISA CVC: 489</p>
+
+    <a href="logout.php">Se deconnecter</a>
 </body>
 </html>
