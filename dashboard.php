@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if(empty($_SESSION['is_logged'])){
+    header('Location: login.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -10,5 +15,7 @@ session_start();
 <body>
     <h1>Dashboard</h1>
     <p>Bonjour <?= $_SESSION['is_logged']?></p>
+    
+    <p>VISA CVC: 489</p>
 </body>
 </html>
