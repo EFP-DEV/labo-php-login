@@ -7,8 +7,6 @@
 <body>
     <h1>Connexion</h1>
     <?php
-    var_dump($_POST);
-    var_dump($_SESSION);
 
     if(isset($_GET['error'])){
         echo '<p>ahahaha you didnt say the magic word</p>';
@@ -25,5 +23,7 @@
 
         <button type="submit">Se connecter</button>
     </form>
+
+    <a href="register.php">Pas de compte ?</a>
 </body>
 </html>

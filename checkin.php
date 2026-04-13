@@ -9,27 +9,10 @@ $sql = 'SELECT password FROM operator WHERE active=1 AND username = "'.$_POST['u
 $stmt = $pdo->query($sql);
 $user = $stmt->fetch();
 
-if($user === false){
-    // retour formulaire login avec message d'erreur
-    header('Location: login.php?error=NoUser');
-}
-elseif($user['password'] === $_POST['password']){
+if($user !== false && password_verify($_POST['password'], $user['password'])){
     $_SESSION['is_logged'] = $_POST['username'];
     header('Location: dashboard.php');
 }
 else{
-    header('Location: login.php?error=passwordWrong');
-}
-
-
-var_dump($sql);
-var_dump($user);
-die;
-
-if($_POST['username'] === 'admin' && $_POST['password'] === 'admin'){
-    // aller sur la page du dashboard
-
-}
-else{
-
+    header('Location: login.php?error=1');
 }
