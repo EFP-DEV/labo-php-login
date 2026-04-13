@@ -10,7 +10,7 @@
     var_dump($_POST);
     var_dump($_SESSION);
 
-    if($_GET['error'] === '1'){
+    if(isset($_GET['error'])){
         echo '<p>ahahaha you didnt say the magic word</p>';
     }
     ?>
