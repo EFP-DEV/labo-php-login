@@ -1,10 +1,13 @@
 <?php
+
+// Start session to access login state
 session_start();
 
-if(empty($_SESSION['is_logged'])){
+// If user not logged → redirect to login
+if (empty($_SESSION['is_logged'])) {
     header('Location: login.php');
+    die; // Stop execution to prevent access to protected content
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">

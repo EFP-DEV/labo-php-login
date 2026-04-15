@@ -7,7 +7,7 @@
 <body>
     <h1>Connexion</h1>
     <?php
-
+    // Display error message if login failed
     if(isset($_GET['error'])){
         echo '<p>ahahaha you didnt say the magic word</p>';
     }

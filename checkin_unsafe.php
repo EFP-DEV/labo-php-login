@@ -1,25 +1,35 @@
 <?php
+
+// Start session to store login state
 session_start();
 
 include 'database.php';
 
-// nous navons pas encore vu les prepared queries
-// NE JAMAIS integrer des donnnees exterieurs dans un query
-// Dans la page login, connecter vous avec: 
-// 'bozoleclown" OR 1=1; -- ' (sans les apostrophes, avec espace final)
-$sql = 'SELECT * FROM operator WHERE active=1 AND username = "'.$_POST['username'].'" AND password="'.$_POST['password'].'"';
+// ⚠️ UNSAFE QUERY (for demonstration only)
+// User input is directly concatenated → SQL injection possible
+$sql = 'SELECT * FROM operator 
+        WHERE active=1 
+        AND username = "'.$_POST['username'].'" 
+        AND password="'.$_POST['password'].'"';
 
-// si vous voulez comprendre comment cela fonctionne, decommenter les deux lignes suivantes.
+// Debug: show the generated SQL
 // var_dump($sql);
 // die;
 
+// Execute raw query (no protection)
 $stmt = $pdo->query($sql);
 $user = $stmt->fetch();
 
-if($user !== false){
+// If a row is returned → login accepted (even if hacked)
+if ($user !== false) {
+
     $_SESSION['is_logged'] = $_POST['username'];
+
     header('Location: dashboard.php');
-}
-else{
+    die; // Stop execution after redirect
+
+} else {
+
     header('Location: login.php?error=1');
+    die; // Stop execution after redirect
 }

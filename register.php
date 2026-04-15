@@ -1,14 +1,26 @@
 <?php
-if(!empty($_POST)){
-    include 'database.php';
-    $sql = 'INSERT INTO `operator` (`username`, `password`) VALUES (?,?);';
-    $statement = $pdo->prepare($sql);
-    $password = password_hash($_POST['password'], null);
-    $statement->execute([$_POST['username'], $password]);
-}
-else{
-    echo 'Vous avez pas soumis';
 
+// If form submitted → process registration
+if (!empty($_POST)) {
+
+    include 'database.php'; // DB connection ($pdo)
+
+    // Prepare insert (secure: prepared statement)
+    $sql = 'INSERT INTO `operator` (`username`, `password`) VALUES (?, ?)';
+    $statement = $pdo->prepare($sql);
+
+    // Hash password before storing
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    // Execute query with user input
+    $statement->execute([
+        $_POST['username'],
+        $password
+    ]);
+
+} else {
+    // Page accessed without form submission
+    echo 'Vous avez pas soumis';
 }
 ?>
 
