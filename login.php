@@ -14,7 +14,7 @@
     ?>
     
     
-    <form method="POST" action="checkin.php">
+    <form method="POST" action="checkin_unsafe.php">
         <label for="username">Nom d'utilisateur</label>
         <input id="username" name="username" value="admin" required>
 
